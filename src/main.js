@@ -3,40 +3,11 @@ const path = require('path')
 const fs = require('fs')
 const lineByLine = require('n-readlines');
 const model = require(path.join(__dirname, './model.js'))
+const notification = require(path.join(__dirname, './notificationService.js'))
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
-const Notification = electron.Notification
 
 let window;
-
-const notifyCreatedUser = async () => {
-    // Notify the User
-    new Notification({
-        title: "Git User Manager",
-        body: "New User Created Successfully",
-    }).show();
-}
-
-const notifyUpdatedUser = async () => {
-    new Notification({
-        title: "Git User Manager",
-        body: "User data Updated Successfully",
-    }).show();
-}
-
-const notifyDeletedUser = async () => {
-    new Notification({
-        title: "Git User Manager",
-        body: "User Deleted Successfully",
-    }).show();
-}
-
-const notifySeletedUser = async (name) => {
-    new Notification({
-        title: "Git User Manager",
-        body: `The User "${name}" is now active`,
-    }).show();
-}
 
 const readCofigFile = (fromWrite) => {
     const configFilePath = app.getPath('home') + '/.gitconfig'
@@ -107,7 +78,7 @@ const writeCofigFile = (user) => {
         flag: 'w'
     })
 
-    notifySeletedUser(user['0'].user_name)
+    notification.notifySeletedUser(user['0'].user_name)
 }
 
 function createWindow() {
@@ -130,9 +101,6 @@ function createWindow() {
 
 module.exports = {
     createWindow,
-    notifyCreatedUser,
-    notifyUpdatedUser,
-    notifyDeletedUser,
     readCofigFile,
     writeCofigFile
 };
