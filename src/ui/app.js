@@ -12,6 +12,15 @@ let editingStatus = false;
 let editUserId;
 
 
+const selectUser = async (id) => {
+    const response = confirm("Are you sure you want to select this profile?");
+    if (response) {
+        const user = await model.getUserById(id);
+        main.writeCofigFile(user);
+    }
+    return;
+}
+
 const deleteUser = async (id) => {
     const response = confirm("Are you sure you want to delete it?");
     if (response) {
@@ -72,6 +81,9 @@ function renderUsers(users) {
         </button>
         <button class="btn btn-secondary btn-sm" onclick="editUser('${u.user_id}')">
           EDIT 
+        </button>
+        <button class="btn btn-primary btn-sm" onclick="selectUser('${u.user_id}')">
+          SELECT
         </button>
         </p>
       </div>

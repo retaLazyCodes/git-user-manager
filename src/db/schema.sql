@@ -5,4 +5,4 @@ CREATE TABLE "users" (
 );
 CREATE INDEX "user_name_index" ON users ("user_name" COLLATE NOCASE ASC);
 CREATE INDEX "email_index" ON users ("email" COLLATE NOCASE ASC);
-INSERT INTO `users` VALUES (NULL, "Jango", "jango@jango.com"), (NULL, "Svend", "svend@contact.com");
+-- INSERT INTO `users` VALUES (NULL, "Jango", "jango@jango.com"), (NULL, "Svend", "svend@contact.com");

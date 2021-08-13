@@ -5,7 +5,6 @@ const fs = require('fs')
 const initSqlJs = require('sql.js')
 
 
-
 let _rowsFromSqlDataObject = function (object) {
   let data = {}
   let i = 0
@@ -21,10 +20,6 @@ let _rowsFromSqlDataObject = function (object) {
   }
   return data
 }
-
-
-
-
 
 initSqlJs.dbOpen = async function (databaseFileName) {
   let db = null
