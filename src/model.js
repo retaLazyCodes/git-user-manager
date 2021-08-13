@@ -4,6 +4,8 @@ const path = require('path')
 const fs = require('fs')
 const initSqlJs = require('sql.js')
 
+
+
 let _rowsFromSqlDataObject = function (object) {
   let data = {}
   let i = 0
@@ -19,6 +21,9 @@ let _rowsFromSqlDataObject = function (object) {
   }
   return data
 }
+
+
+
 
 
 initSqlJs.dbOpen = async function (databaseFileName) {
@@ -57,7 +62,7 @@ initSqlJs.dbClose = function (databaseHandle, databaseFileName) {
 
 let dbPath
 
-module.exports.initDb = async function (appPath, callback) {
+module.exports.initDb = async function (appPath, callback, readCofigFileFunction) {
   dbPath = path.join(appPath, 'example.db')
   let createDb = function (dbPath) {
     // Create a database.
@@ -82,6 +87,8 @@ module.exports.initDb = async function (appPath, callback) {
   if (db === null) {
     /* The file doesn't exist so create a new database. */
     createDb(dbPath)
+    const userConfig = readCofigFileFunction()
+    this.saveUser(userConfig)
   } else {
     /*
       The file is a valid sqlite3 database. This simple query will demonstrate
@@ -199,3 +206,5 @@ module.exports.saveUser = async function (objectValues, id, callback) {
   }
 
 }
+
+
