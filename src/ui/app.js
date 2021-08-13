@@ -1,5 +1,6 @@
 const remote = require("electron").remote
 const main = remote.require('./main')
+const notification = remote.require('./notificationService')
 const model = remote.require('./model')
 
 const userForm = document.querySelector("#userForm");
@@ -24,7 +25,7 @@ const selectUser = async (id) => {
 const deleteUser = async (id) => {
     const response = confirm("Are you sure you want to delete it?");
     if (response) {
-        await model.deleteUser(id, main.notifyDeletedUser);
+        await model.deleteUser(id, notification.notifyDeletedUser);
         await getUsers();
     }
     return;
@@ -51,9 +52,9 @@ userForm.addEventListener("submit", async (e) => {
         };
 
         if (!editingStatus) {
-            await model.saveUser(user, "NULL", main.notifyCreatedUser);
+            await model.saveUser(user, "NULL", notification.notifyCreatedUser);
         } else {
-            await model.saveUser(user, editUserId, main.notifyUpdatedUser);
+            await model.saveUser(user, editUserId, notification.notifyUpdatedUser);
 
             // Reset
             editingStatus = false;

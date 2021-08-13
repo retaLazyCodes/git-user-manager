@@ -3,6 +3,11 @@ body {
   padding: 0;
 }
 
+h1 {
+  color: black;
+  font-size: 1.5rem;
+}
+
 /* #users {
   height: 100vh;
   overflow-y: auto;
