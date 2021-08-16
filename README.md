@@ -29,6 +29,8 @@ An Electron.js app to manage multiple GIT local users. Switch between them quick
 
 ## How to run
 
+Note: You have to have [GIT](https://git-scm.com) installed on your computer 
+
 1. Install [Node.js](https://nodejs.org/) v14+ to run.
 2. Clone the repository
 3. Open a terminal and navigate to the root project folder
