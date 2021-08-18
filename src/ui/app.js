@@ -1,6 +1,6 @@
 const remote = require("electron").remote
-const main = remote.require('./main')
-const notification = remote.require('./notificationService')
+const configFileService = remote.require('./configFileService')
+const notificationService = remote.require('./notificationService')
 const model = remote.require('./model')
 
 const userForm = document.querySelector("#userForm");
@@ -17,7 +17,7 @@ const selectUser = async (id) => {
     const response = confirm("Are you sure you want to select this profile?");
     if (response) {
         const user = await model.getUserById(id);
-        main.writeCofigFile(user);
+        configFileService.writeCofigFile(user);
     }
     return;
 }
@@ -25,7 +25,7 @@ const selectUser = async (id) => {
 const deleteUser = async (id) => {
     const response = confirm("Are you sure you want to delete it?");
     if (response) {
-        await model.deleteUser(id, notification.notifyDeletedUser);
+        await model.deleteUser(id, notificationService.notifyDeletedUser);
         await getUsers();
     }
     return;
@@ -52,9 +52,9 @@ userForm.addEventListener("submit", async (e) => {
         };
 
         if (!editingStatus) {
-            await model.saveUser(user, "NULL", notification.notifyCreatedUser);
+            await model.saveUser(user, "NULL", notificationService.notifyCreatedUser);
         } else {
-            await model.saveUser(user, editUserId, notification.notifyUpdatedUser);
+            await model.saveUser(user, editUserId, notificationService.notifyUpdatedUser);
 
             // Reset
             editingStatus = false;
@@ -94,15 +94,19 @@ function renderUsers(users) {
 
 const getUsers = async () => {
     users = await model.getUsers()
+    if (users) {
+        const entries = Object.entries(users)
+        usersArray = []
+        entries.forEach((item) => {
+            console.log(item['1'])
+            usersArray.push(item['1'])
+        })
 
-    const entries = Object.entries(users)
-    usersArray = []
-    entries.forEach((item) => {
-        console.log(item['1'])
-        usersArray.push(item['1'])
-    })
-
-    renderUsers(usersArray);
+        renderUsers(usersArray);
+    }
+    else {
+        window.alert("No hay usuarios almacenados")
+    }
 };
 
 async function init() {

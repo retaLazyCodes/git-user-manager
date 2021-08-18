@@ -26,7 +26,6 @@ initSqlJs.dbOpen = async function (databaseFileName) {
   try {
     await initSqlJs().then(function (SQL) {
       db = new SQL.Database(fs.readFileSync(databaseFileName));
-      console.log(db)
     })
     return db
   } catch (error) {
@@ -62,7 +61,6 @@ module.exports.initDb = async function (appPath, callback, readCofigFileFunction
   let createDb = function (dbPath) {
     // Create a database.
     initSqlJs().then(function (SQL) {
-      console.log("sql.js initialized 🎉");
       const db = new SQL.Database();
 
       let query = fs.readFileSync(
@@ -92,9 +90,9 @@ module.exports.initDb = async function (appPath, callback, readCofigFileFunction
     let query = 'SELECT count(*) as `count` FROM `sqlite_master`'
     let row = db.exec(query)
     let tableCount = parseInt(row[0].values)
+
     if (tableCount === 0) {
       console.log('The file is an empty SQLite3 database.')
-      createDb(dbPath)
     } else {
       console.log('The database has', tableCount, 'tables.')
     }
@@ -109,7 +107,6 @@ module.exports.initDb = async function (appPath, callback, readCofigFileFunction
 */
 module.exports.getUsers = async function () {
   let db = await initSqlJs.dbOpen(dbPath)
-  console.log("db", db)
   if (db !== null) {
     let query = 'SELECT * FROM `users` ORDER BY `user_id` DESC'
     try {
