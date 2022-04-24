@@ -37,6 +37,16 @@ Note: You have to have [GIT](https://git-scm.com) installed on your computer
 4. Now run ```npm install``` to install all dependencies
 5. Finally run ```npm start``` to run the app
 
+## How to build and install on your OS
+
+1. After having executed ```npm install``` you must run ```npm run make```
+2. (only for Linux users) If you get the following error 
+    ```Error: Cannot make for rpm, the following external binaries need to be installed: rpmbuild```
+    ```Electron Forge was terminated. Location: {}```
+    You can fix it running
+    ```sudo apt install rpm```
+3. Finally you will see a new folder called **out** with the generated redistributables ready to install the app on your OS.
+
 ## Contact
 
 Created by [@retaLazyCodes](https://github.com/retaLazyCodes) - feel free to contact me!
