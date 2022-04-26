@@ -16,6 +16,10 @@
     "name": "Brian Retamar",
     "email": "leo1632@hotmail.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/retaLazyCodes/git-user-manager"
+  },
   "license": "MIT",
   "config": {
     "forge": {
