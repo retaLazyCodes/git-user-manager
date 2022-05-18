@@ -7,6 +7,7 @@
   <title>Git User Manager</title>
   <link rel="stylesheet" href="bootstrap.min.css">
   <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="terminal.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
 </head>
@@ -16,7 +17,7 @@
   <main class="container-fluid">
     <div class="row">
 
-      <div class="col-md-6 p-4 my-auto">
+      <div class="col-md-8 p-4 my-auto">
         <h1>Manage multiple
           <span>
             <img src="./assets/git-alt-brands.svg" alt="" width="10%" class="filter-orange">
@@ -39,10 +40,27 @@
           </button>
         </form>
 
+        <!-- Terminal -->
+        <div class="terminal">
+          <div class=fakeMenu>
+            <div class="fakeButtons fakeClose"></div>
+            <div class="fakeButtons fakeMinimize"></div>
+            <div class="fakeButtons fakeZoom"></div>
+          </div>
+          <div class="fakeScreen">
+            <p class="line1">$ yo gulp-webapp<span class="cursor1">_</span></p>
+            <p class="line2">Out of the box I include HTML5 Boilerplate, jQuery, and a gulpfile.js to build your
+              app.<span class="cursor2">_</span></p>
+            <!-- <p class="line3">[?] What more would you like? (Press space to select)<span class="cursor3">_</span></p>
+            <p class="line4">><span class="cursor4">_</span></p> -->
+          </div>
+        </div>
+
       </div>
 
+
       <!-- Users List -->
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div id="users"></div>
       </div>
     </div>
