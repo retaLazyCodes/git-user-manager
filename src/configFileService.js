@@ -31,12 +31,12 @@ const readCofigFile = (fromWrite) => {
     if (fromWrite) {
         return lines
     }
-    console.log("pasó x acá")
     const userConfig = { email: email, userName: name }
     return userConfig
 }
 
 const writeCofigFile = (userRow) => {
+    console.log(userRow)
     const user = userRow['0']
     const { user_name, email } = user
     const setEmail = `git config --global user.email ${email.trim()}`
@@ -47,7 +47,15 @@ const writeCofigFile = (userRow) => {
     notification.notifySeletedUser(user_name)
 }
 
+const getUserConfig = () => {
+    const getUserName = "whoami"
+    const userName = execSync(getUserName).toString()
+    const gitConfig = readCofigFile()
+    return { userName, gitConfig }
+}
+
 module.exports = {
     readCofigFile,
-    writeCofigFile
+    writeCofigFile,
+    getUserConfig,
 }
