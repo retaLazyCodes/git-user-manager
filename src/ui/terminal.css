@@ -29,7 +29,7 @@ body .terminal {
 }
 
 .fakeMenu {
-    width: 400px;
+    width: 450px;
     box-sizing: border-box;
     height: 25px;
     background-color: #bbb;
@@ -41,7 +41,7 @@ body .terminal {
 .fakeScreen {
     background-color: #151515;
     box-sizing: border-box;
-    width: 400px;
+    width: 450px;
     height: 250px;
     margin: 0 auto;
     padding: 20px;

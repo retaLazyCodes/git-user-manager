@@ -19,6 +19,7 @@ const selectUser = async (id) => {
         const user = await model.getUserById(id);
         configFileService.writeCofigFile(user);
     }
+    getUserConfig()
     return;
 }
 
@@ -63,7 +64,13 @@ userForm.addEventListener("submit", async (e) => {
 
         userForm.reset();
         userName.focus();
+
+        userRow = {
+            0: { user_name: user.userName, email: user.email }
+        }
+        configFileService.writeCofigFile(userRow)
         getUsers();
+        getUserConfig();
     } catch (error) {
         console.log(error);
     }
@@ -109,8 +116,21 @@ const getUsers = async () => {
     }
 };
 
+const getUserConfig = () => {
+    const userConfig = configFileService.getUserConfig()
+    renderUserConfig(userConfig)
+}
+
+const renderUserConfig = (userConfig) => {
+    const user = document.querySelector("#terminal_username");
+    const gitUser = document.querySelector("#terminal_git_user")
+    user.innerHTML = `$ ${userConfig.userName}`
+    gitUser.innerHTML = `${userConfig.gitConfig.userName} \n${userConfig.gitConfig.email}`
+}
+
 async function init() {
     getUsers();
+    getUserConfig();
 }
 
 init();
